@@ -12,18 +12,6 @@ module.exports.nuevaPelicula = (req, res) => {
   }
 };
 
-module.exports.modificarTodo = (req, res) => {
-  let peliEncontrada = p2.find((pelicula) => pelicula.id === req.body.id);
-  peliEncontrada.name = req.body.name;
-  res.json(req.body);
-};
-
-module.exports.modificarParte = (req, res) => {
-  let peliEncontrada = p2.find((pelicula) => pelicula.id === req.body.id);
-  if (req.body.name) peliEncontrada.name = req.body.name;
-  res.json(req.body);
-};
-
 module.exports.borrar = (req, res) => {
   const peliEncontrada = p2.findIndex(
     (pelicula) => pelicula.id === req.body.id
