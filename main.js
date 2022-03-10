@@ -16,5 +16,5 @@ mongoose
 const pelRouter = require("./peliculas/pelRutas.js");
 const usRouter = require("./usuarios/usRutas.js");
 
-app.use("/", usRouter);
-app.use("/", pelRouter);
+app.use("/usuarios", usRouter);
+app.use("/peliculas", pelRouter);

@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const controller = require("./pelControlador.js");
 
-router.get("/peliculas", controller.traerPeliculas);
+router.get("/", controller.traerPeliculas);
 
-router.get("/peliculas/:id", controller.traerPeliculasFiltros);
+router.get("/:id", controller.traerPeliculasFiltros);
 
-router.post("/peliculas", controller.nuevaPelicula);
+router.post("/", controller.nuevaPelicula);
 
-router.delete("/peliculas", controller.borrarPelicula);
+router.delete("/", controller.borrarPelicula);
 
 module.exports = router;

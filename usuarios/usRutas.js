@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const controller = require("./usControlador.js");
 
-router.get("/usuarios", controller.traerUsuarios);
+router.get("/", controller.traerUsuarios);
 
-router.post("/usuarios", controller.nuevoUsuario);
+router.post("/", controller.nuevoUsuario);
 
-router.put("/usuarios", controller.modificarUsuario);
+router.put("/", controller.modificarUsuario);
 // las APIs no implementan put y patch, solo uno de ellos
-router.patch("/usuarios", controller.modificarParteUsuario);
+router.patch("/", controller.modificarParteUsuario);
 
-router.delete("/usuarios", controller.borrarUsuario);
+router.delete("/", controller.borrarUsuario);
 
 module.exports = router;

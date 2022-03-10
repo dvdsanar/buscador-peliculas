@@ -1,15 +1,24 @@
-const usuarios = require("./usModelo.js");
+const Usuarios = require("./usModelo.js");
 
-module.exports.traerUsuarios = (req, res) => res.json(usuarios);
-
-module.exports.nuevoUsuario = (req, res) => {
-  if (usuarios.find((usuario) => usuario.id === req.body.id)) {
-    res.status(400);
-    res.json({ error: "id duplicado" });
+module.exports.traerUsuarios = async (req, res) => {
+  if (req.query.nombre) {
+    console.log("Entra por nombre");
+    const listaFiltrada = await Usuarios.find({ nombre: req.query.nombre });
+    res.json(listaFiltrada);
+  } else if (req.query.email) {
+    console.log("Entra por email");
+    const listaFiltrada = await Usuarios.find({ email: req.query.email });
+    res.json(listaFiltrada);
   } else {
-    usuario.push({ id: req.body.id, nombre: req.body.nombre });
-    res.json(req.body);
+    console.log("Entra por NADA");
+    const lista = await Usuarios.find({});
+    res.json(lista);
   }
+};
+module.exports.nuevoUsuario = async (req, res) => {
+  const usuario = new Usuarios(req.body);
+  await usuario.save();
+  res.json(usuario);
 };
 
 module.exports.modificarUsuario = (req, res) => {
