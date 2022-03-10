@@ -1,4 +1,4 @@
-const p2 = require("./peliculas.js");
+const p2 = require("./pelModelo.js");
 
 module.exports.traerPeliculas = (req, res) => res.json(p2);
 
@@ -12,7 +12,7 @@ module.exports.nuevaPelicula = (req, res) => {
   }
 };
 
-module.exports.borrar = (req, res) => {
+module.exports.borrarPelicula = (req, res) => {
   const peliEncontrada = p2.findIndex(
     (pelicula) => pelicula.id === req.body.id
   );

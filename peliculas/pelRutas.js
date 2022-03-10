@@ -6,6 +6,6 @@ router.get("/peliculas", controller.traerPeliculas);
 
 router.post("/peliculas", controller.nuevaPelicula);
 
-router.delete("/peliculas", controller.borrar);
+router.delete("/peliculas", controller.borrarPelicula);
 
 module.exports = router;
