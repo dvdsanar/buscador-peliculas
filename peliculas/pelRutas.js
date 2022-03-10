@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("./controller.js");
+const controller = require("./pelControlador.js");
 
 router.get("/peliculas", controller.traerPeliculas);
 
