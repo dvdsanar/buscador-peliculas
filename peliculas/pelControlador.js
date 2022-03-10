@@ -1,16 +1,20 @@
 const Peliculas = require("./pelModelo.js");
 
 module.exports.traerPeliculas = async (req, res) => {
-  console.log(req.query == {}, "== {}");
-  console.log(req.query != {}, "!= {}");
-  console.log(!req.query, "!req.query");
-
   if (req.query.titulo) {
-    console.log("Arriba");
+    console.log("Entra por titulo");
     const listaFiltrada = await Peliculas.find({ titulo: req.query.titulo });
     res.json(listaFiltrada);
+  } else if (req.query.genero) {
+    console.log("Entra por genero");
+    const listaFiltrada = await Peliculas.find({ genero: req.query.genero });
+    res.json(listaFiltrada);
+  } else if (req.query.actores) {
+    console.log("Entra por actores");
+    const listaFiltrada = await Peliculas.find({ actores: req.query.actores });
+    res.json(listaFiltrada);
   } else {
-    console.log("Abajo");
+    console.log("Entra por NADA");
     const lista = await Peliculas.find({});
     res.json(lista);
   }
