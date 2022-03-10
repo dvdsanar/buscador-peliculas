@@ -1,15 +1,19 @@
-const p2 = require("./pelModelo.js");
+const Peliculas = require("./pelModelo.js");
 
-module.exports.traerPeliculas = (req, res) => res.json(p2);
-
-module.exports.nuevaPelicula = (req, res) => {
-  if (p2.find((pelicula) => pelicula.id === req.body.id)) {
-    res.status(400);
-    res.json({ error: "id duplicado" });
+module.exports.traerPeliculas = async (req, res) => {
+  if (!req.query) {
+    const lista = await Peliculas.find({});
+    res.json(lista);
   } else {
-    p2.push({ id: req.body.id, name: req.body.name });
-    res.json(req.body);
+    const listaFiltrada = await Peliculas.find({ titulo: req.query.titulo });
+    res.json(listaFiltrada);
   }
+};
+
+module.exports.nuevaPelicula = async (req, res) => {
+  const pelicula = new Peliculas(req.body);
+  await pelicula.save();
+  res.json(pelicula);
 };
 
 module.exports.borrarPelicula = (req, res) => {

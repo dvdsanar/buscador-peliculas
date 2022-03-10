@@ -1,3 +1,8 @@
+const mongoose = require("mongoose");
+const Schema = new mongoose.Schema({});
+const Model = mongoose.model("Usuarios", Schema);
+module.exports = Model;
+
 const usuarios = [
   {
     id: 1,
