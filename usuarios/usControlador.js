@@ -29,12 +29,9 @@ module.exports.modificarUsuario = (req, res) => {
   res.json(req.body);
 };
 
-module.exports.modificarParteUsuario = (req, res) => {
-  let usuarioEncontrado = usuarios.find(
-    (usuario) => usuario.id === req.body.id
-  );
-  if (req.body.name) usuarioEncontrado.nombre = req.body.nombre;
-  res.json(req.body);
+module.exports.modificarParteUsuario = async (req, res) => {
+  await Usuarios.updateOne({ _id: req.params.id }, req.body);
+  res.status(200).send("Usuario modificado");
 };
 
 module.exports.borrarUsuario = async (req, res) => {
