@@ -8,8 +8,8 @@ router.post("/", controller.nuevoUsuario);
 
 router.put("/", controller.modificarUsuario);
 // las APIs no implementan put y patch, solo uno de ellos
-router.patch("/", controller.modificarParteUsuario);
+router.patch("/:id", controller.modificarParteUsuario);
 
-router.delete("/", controller.borrarUsuario);
+router.delete("/:id", controller.borrarUsuario);
 
 module.exports = router;

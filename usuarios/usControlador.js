@@ -37,10 +37,7 @@ module.exports.modificarParteUsuario = (req, res) => {
   res.json(req.body);
 };
 
-module.exports.borrarUsuario = (req, res) => {
-  const usuarioEncontrado = usuarios.findIndex(
-    (usuario) => usuario.id === req.body.id
-  );
-  usuarios.splice(usuarioEncontrado, 1);
-  res.json(req.body);
+module.exports.borrarUsuario = async (req, res) => {
+  console.log("Borrando un usuario");
+  res.json(await Usuarios.deleteOne({ _id: req.params.id }));
 };

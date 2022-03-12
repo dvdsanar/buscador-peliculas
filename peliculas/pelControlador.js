@@ -31,10 +31,7 @@ module.exports.nuevaPelicula = async (req, res) => {
   res.json(pelicula);
 };
 
-module.exports.borrarPelicula = (req, res) => {
-  const peliEncontrada = p2.findIndex(
-    (pelicula) => pelicula.id === req.body.id
-  );
-  p2.splice(peliEncontrada, 1);
-  res.json(req.body);
+module.exports.borrarPelicula = async (req, res) => {
+  console.log("Borrando una película");
+  res.json(await Peliculas.deleteOne({ _id: req.params.id }));
 };

@@ -8,6 +8,6 @@ router.get("/:id", controller.traerPeliculasFiltros);
 
 router.post("/", controller.nuevaPelicula);
 
-router.delete("/", controller.borrarPelicula);
+router.delete("/:id", controller.borrarPelicula);
 
 module.exports = router;
