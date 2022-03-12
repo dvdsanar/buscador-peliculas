@@ -4,6 +4,8 @@ const controller = require("./usControlador.js");
 
 router.get("/", controller.traerUsuarios);
 
+router.get("/:id", controller.traerUsuariosID);
+
 router.post("/", controller.nuevoUsuario);
 
 router.put("/", controller.modificarUsuario);

@@ -30,6 +30,10 @@ module.exports.nuevaPelicula = async (req, res) => {
   await pelicula.save();
   res.json(pelicula);
 };
+module.exports.modificarPelicula = async (req, res) => {
+  await Peliculas.updateOne({ _id: req.params.id }, req.body);
+  res.status(200).send("Pelicula modificada");
+};
 
 module.exports.borrarPelicula = async (req, res) => {
   console.log("Borrando una película");

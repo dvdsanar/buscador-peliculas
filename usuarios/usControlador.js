@@ -15,6 +15,11 @@ module.exports.traerUsuarios = async (req, res) => {
     res.json(lista);
   }
 };
+module.exports.traerUsuariosID = async (req, res) => {
+  console.log("Usuarios por id");
+  res.json(await Usuarios.find({ _id: req.params.id }));
+};
+
 module.exports.nuevoUsuario = async (req, res) => {
   const usuario = new Usuarios(req.body);
   await usuario.save();
