@@ -17,6 +17,22 @@ mongoose
   .then(() => console.log("El mongoose chuta"))
   .catch((error) => console.log("Ha habido un error", error));
 
+//Autenticacion
+const autenticacion = require("./autenticador");
+
+app.use("/", async (req, res, next) => {
+  console.info("Mi primer Middleware");
+  // TODO: transform the autencation function in a middleware function
+  const autenticado = await autenticacion({
+    email: req.headers.email,
+    password: req.headers.password,
+  });
+  if (autenticado) {
+    next();
+  }
+  res.status(401).send();
+});
+
 //rutas de los verbos de las peliculas y los usuarios y uso cada vez que sean llamados
 const pelRouter = require("./peliculas/pelRutas.js");
 const usRouter = require("./usuarios/usRutas.js");

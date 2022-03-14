@@ -1,14 +1,12 @@
-const user = require("./usuarios/usModelo");
+const Usuario = require("./usuarios/usModelo.js");
 
 const autenticacion = () => {
-  const buscarUsuario = user.findOne({ email, contraseña });
+  const buscarUsuario = Usuario.findOne({ ...Usuario });
   if (buscarUsuario) {
     return true;
   }
   return false;
 };
-
-await autenticacion();
 
 module.exports = autenticacion;
 
