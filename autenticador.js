@@ -1,7 +1,7 @@
 const Usuario = require("./usuarios/usModelo.js");
 
-const autenticacion = () => {
-  const buscarUsuario = Usuario.findOne({ ...Usuario });
+const autenticacion = async (email, password) => {
+  const buscarUsuario = await Usuario.findOne({ email, password });
   if (buscarUsuario) {
     return true;
   }
