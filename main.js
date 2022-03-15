@@ -18,7 +18,7 @@ mongoose
   .catch((error) => console.log("Ha habido un error", error));
 
 //Autenticacion
-const autenticacion = require("./autenticador");
+const autenticacion = require("./autenticador.js");
 
 app.use("/", async (req, res, next) => {
   console.info("Mi primer Middleware");

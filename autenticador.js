@@ -1,13 +1,12 @@
 const Usuario = require("./usuarios/usModelo.js");
 
-const autenticacion = async (email, password) => {
-  const buscarUsuario = await Usuario.findOne({ email, password });
+const autenticacion = async ({ email, password }) => {
+  const buscarUsuario = await Usuario.findOne({ email, password }); // null
   if (buscarUsuario) {
     return true;
   }
   return false;
 };
-
 module.exports = autenticacion;
 
 //esta función habría de usarse de middleware junto con el if de abajo
