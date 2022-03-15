@@ -18,11 +18,29 @@ mongoose
   .catch((error) => console.log("Ha habido un error", error));
 
 //Autenticacion a través de middleware de autenticación
-const autenticacion = require("./autenticador.js");
-app.use("/", autenticacion);
+const autenticacion = require("./middleware.js");
+//funcion de autenticacion app.use("/", autenticacion);
 
 //rutas de los verbos de las peliculas y los usuarios y uso cada vez que sean llamados
 const pelRouter = require("./peliculas/pelRutas.js");
 const usRouter = require("./usuarios/usRutas.js");
 app.use("/usuarios", usRouter);
 app.use("/peliculas", pelRouter);
+
+//generar un token de autenticacion
+const token = require("jsonwebtoken");
+//const Usuario = require("./usuarios/usModelo.js");
+
+const generarFicha = (req, res) => {
+  const ficha = token.sign(
+    { email: req.headers.email, password: req.headers.password },
+    "geekshubs"
+  );
+  res.json(ficha);
+};
+const checkJwt = (ficha) => {
+  const verificacion = token.verify(ficha, "geekshubs");
+  console.log(verificacion);
+  return verificacion;
+};
+app.get("/auth", checkJwt(ficha));
