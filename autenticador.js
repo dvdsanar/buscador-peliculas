@@ -1,11 +1,15 @@
 const Usuario = require("./usuarios/usModelo.js");
 
-const autenticacion = async ({ email, password }) => {
-  const buscarUsuario = await Usuario.findOne({ email, password }); // null
-  if (buscarUsuario) {
-    return true;
+const autenticacion = async (req, res, next) => {
+  const buscarUsuario = await Usuario.findOne({
+    email: req.headers.email,
+    password: req.headers.password,
+  }); // null
+  if (!buscarUsuario) {
+    res.status(401).send("Acceso denegado");
+  } else {
+    next();
   }
-  return false;
 };
 module.exports = autenticacion;
 
