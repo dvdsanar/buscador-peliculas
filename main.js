@@ -31,16 +31,25 @@ app.use("/peliculas", pelRouter);
 const token = require("jsonwebtoken");
 //const Usuario = require("./usuarios/usModelo.js");
 
-const generarFicha = (req, res) => {
-  const ficha = token.sign(
-    { email: req.headers.email, password: req.headers.password },
-    "geekshubs"
-  );
-  res.json(ficha);
+const generarFicha = async (req, res) => {
+  const buscarUsuario = await Usuario.findOne({
+    email: req.headers.email,
+    password: req.headers.password,
+  });
+  if (buscarUsuario) {
+    const ficha = token.sign(
+      { email: req.headers.email, password: req.headers.password },
+      "geekshubs"
+    );
+    res.json(ficha);
+  } else {
+    res.status(401).send("No puedes pasar");
+  }
 };
-const checkJwt = (ficha) => {
-  const verificacion = token.verify(ficha, "geekshubs");
-  console.log(verificacion);
-  return verificacion;
-};
-app.get("/auth", checkJwt(ficha));
+
+// const checkJwt = (ficha) => {
+//   const verificacion = token.verify(ficha, "geekshubs");
+//   console.log(verificacion);
+//   return verificacion;
+// };
+// app.get("/auth", checkJwt(ficha));

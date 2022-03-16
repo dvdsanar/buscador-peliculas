@@ -1,14 +1,12 @@
 const Usuario = require("./usuarios/usModelo.js");
+const jwt = require("jsonwebtoken");
 
-const autenticacion = async (req, res, next) => {
-  const buscarUsuario = await Usuario.findOne({
-    email: req.headers.email,
-    password: req.headers.password,
-  }); // null
-  if (!buscarUsuario) {
-    res.status(401).send("Acceso denegado");
-  } else {
+const autenticacion = (req, res, next) => {
+  try {
+    jwt.verify(req.headers.token, "geekshubs");
     next();
+  } catch (error) {
+    res.status(401).send(error);
   }
 };
 module.exports = autenticacion;
