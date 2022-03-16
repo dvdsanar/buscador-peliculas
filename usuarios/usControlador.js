@@ -1,4 +1,5 @@
 const Usuarios = require("./usModelo.js");
+const jwt = require("jsonwebtoken");
 
 //Función para mostrar los usuarios por su nombre, email o todos los usuarios
 module.exports.traerUsuarios = async (req, res) => {
@@ -40,4 +41,20 @@ module.exports.modificarParteUsuario = async (req, res) => {
 module.exports.borrarUsuario = async (req, res) => {
   console.log("Borrando un usuario");
   res.json(await Usuarios.deleteOne({ _id: req.params.id }));
+};
+
+//Función para generar un token
+module.exports.generarFicha = async (req, res) => {
+  const buscarUsuario = await Usuarios.findOne({
+    email: req.headers.email,
+    password: req.headers.password,
+  });
+  console.log("Estamos por el inicio de la funcion");
+  if (buscarUsuario) {
+    const ficha = jwt.sign({ rol: req.headers.rol }, "geekshubs");
+    console.log("entra al if");
+    res.json(ficha);
+  } else {
+    res.status(401).send("No puedes pasar");
+  }
 };
