@@ -26,7 +26,13 @@ module.exports.traerUsuariosID = async (req, res) => {
 
 //Función para crear un nuevo usuario
 module.exports.nuevoUsuario = async (req, res) => {
-  const usuario = new Usuarios(req.body);
+  const usuarioCreado = {
+    nombre: req.body.nombre,
+    email: req.body.email,
+    password: req.body.password,
+    rol: "cliente",
+  };
+  const usuario = new Usuarios(usuarioCreado);
   await usuario.save();
   res.json(usuario);
 };
@@ -51,7 +57,7 @@ module.exports.generarFicha = async (req, res) => {
   });
   console.log("Estamos por el inicio de la funcion");
   if (buscarUsuario) {
-    const ficha = jwt.sign({ rol: req.headers.rol }, "geekshubs");
+    const ficha = jwt.sign({ rol: buscarUsuario.rol }, "geekshubs");
     console.log("entra al if");
     res.json(ficha);
   } else {

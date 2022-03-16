@@ -3,8 +3,13 @@ const jwt = require("jsonwebtoken");
 
 const verificacion = (req, res, next) => {
   try {
-    jwt.verify(req.headers.token, "geekshubs");
-    next();
+    const token = jwt.verify(req.headers.token, "geekshubs");
+    console.log(token);
+    if (token.rol == "admin") {
+      next();
+    } else {
+      res.status(403).send("Tus credenciales no te permiten acceder aqui");
+    }
   } catch (error) {
     res.status(401).send(error);
   }
