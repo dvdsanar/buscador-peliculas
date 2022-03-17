@@ -1,12 +1,12 @@
 const Usuario = require("./usuarios/usModelo.js");
 const jwt = require("jsonwebtoken");
 
-const verificacion = (comprobacionRol) => {
+const verificacion = (comprobacionRol = null) => {
   return (req, res, next) => {
     try {
       const token = jwt.verify(req.headers.token, process.env.JWT_KEY);
       console.log(token.rol);
-      if (token.rol == comprobacionRol) {
+      if (comprobacionRol == null || token.rol == comprobacionRol) {
         next();
       } else {
         res.status(403).send("Tus credenciales no te permiten acceder aqui");

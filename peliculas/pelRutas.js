@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("./pelControlador.js"); //Controlador de peliculas importado
+const verificacion = require("../middleware.js");
 
 //Rutas de todos los verbos de nuestras funciones para las peliculas
-router.get("/", controller.traerPeliculas);
-router.get("/:id", controller.traerPeliculasFiltros);
-router.post("/", controller.nuevaPelicula);
-router.patch("/:id", controller.modificarPelicula);
-router.delete("/:id", controller.borrarPelicula);
+router.get("/", verificacion(), controller.traerPeliculas);
+router.get("/:id", verificacion(), controller.traerPeliculasFiltros);
+router.post("/", verificacion("admin"), controller.nuevaPelicula);
+router.patch("/:id", verificacion("admin"), controller.modificarPelicula);
+router.delete("/:id", verificacion("admin"), controller.borrarPelicula);
 
 module.exports = router;
