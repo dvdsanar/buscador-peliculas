@@ -3,18 +3,22 @@ const jwt = require("jsonwebtoken");
 
 //Función para mostrar los usuarios por su nombre, email o todos los usuarios
 module.exports.traerUsuarios = async (req, res) => {
-  if (req.query.nombre) {
-    console.log("Entra por nombre");
-    const listaFiltrada = await Usuarios.find({ nombre: req.query.nombre });
-    res.json(listaFiltrada);
-  } else if (req.query.email) {
-    console.log("Entra por email");
-    const listaFiltrada = await Usuarios.find({ email: req.query.email });
-    res.json(listaFiltrada);
-  } else {
-    console.log("Entra por NADA");
-    const lista = await Usuarios.find({});
-    res.json(lista);
+  try {
+    if (req.query.nombre) {
+      console.log("Entra por nombre");
+      const listaFiltrada = await Usuarios.find({ nombre: req.query.nombre });
+      res.json(listaFiltrada);
+    } else if (req.query.email) {
+      console.log("Entra por email");
+      const listaFiltrada = await Usuarios.find({ email: req.query.email });
+      res.json(listaFiltrada);
+    } else {
+      console.log("Entra por NADA");
+      const lista = await Usuarios.find({});
+      res.json(lista);
+    }
+  } catch (error) {
+    res.json(error);
   }
 };
 
