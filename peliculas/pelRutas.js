@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("./pelControlador.js"); //Controlador de peliculas importado
-const verificacion = require("../middleware.js");
+const verificacion = require("../configuracion/middleware.js");
 
 //Rutas de todos los verbos de nuestras funciones para las peliculas
 router.get("/", verificacion(), controller.traerPeliculas);

@@ -1,4 +1,4 @@
-const Usuario = require("./usuarios/usModelo.js");
+const Usuario = require("../usuarios/usModelo.js");
 const jwt = require("jsonwebtoken");
 
 const verificacion = (comprobacionRol = null) => {

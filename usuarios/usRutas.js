@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("./usControlador.js"); //Controlador de Usuarios
-const verificacion = require("../middleware.js");
+const verificacion = require("../configuracion/middleware.js");
 
 //Rutas de todos los verbos de nuestras funciones para los usuarios
 router.get("/", verificacion(), controller.traerUsuarios);
