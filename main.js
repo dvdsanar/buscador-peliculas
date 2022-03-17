@@ -1,7 +1,7 @@
 //Importación para usar express
 const express = require("express");
 const app = express();
-const conexion = require("./conexion.js");
+const conexion = require("./configuracion/conexion.js");
 const pelRouter = require("./peliculas/pelRutas.js");
 const usRouter = require("./usuarios/usRutas.js");
 const dotenvDavid = require("dotenv");
@@ -15,7 +15,6 @@ app.use(express.json());
 app.listen(process.env.SERVER_PORT, () =>
   console.log("Servidor levantado con éxito")
 );
-app.get("/", (req, res) => res.send("Hello World!"));
 
 //rutas de los verbos de las peliculas y los usuarios y uso cada vez que sean llamados
 app.use("/usuarios", usRouter);
