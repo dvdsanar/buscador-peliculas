@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const verificacion = (comprobacionRol) => {
   return (req, res, next) => {
     try {
-      const token = jwt.verify(req.headers.token, "geekshubs");
+      const token = jwt.verify(req.headers.token, process.env.JWT_KEY);
       console.log(token.rol);
       if (token.rol == comprobacionRol) {
         next();

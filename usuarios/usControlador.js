@@ -76,7 +76,7 @@ module.exports.generarFicha = async (req, res) => {
       password: req.headers.password,
     });
     if (buscarUsuario) {
-      const ficha = jwt.sign({ rol: buscarUsuario.rol }, "geekshubs");
+      const ficha = jwt.sign({ rol: buscarUsuario.rol }, process.env.JWT_KEY);
       res.json(ficha);
     } else {
       res.status(401).send("No tienes un usuario para poder pasar");
