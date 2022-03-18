@@ -1,11 +1,11 @@
-const Usuario = require("../usuarios/usModelo.js");
+//Importacion de libreria de gestion de token
 const jwt = require("jsonwebtoken");
 
+//Middleware para la verificación a traves de un token
 const verificacion = (comprobacionRol = null) => {
   return (req, res, next) => {
     try {
       const token = jwt.verify(req.headers.token, process.env.JWT_KEY);
-      console.log(token.rol);
       if (comprobacionRol == null || token.rol == comprobacionRol) {
         next();
       } else {

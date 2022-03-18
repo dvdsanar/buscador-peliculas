@@ -4,7 +4,6 @@ const Peliculas = require("./pelModelo.js"); //Modelo de peliculas importado
 module.exports.traerPeliculas = async (req, res) => {
   try {
     if (req.query.titulo || req.query.genero || req.query.actores) {
-      console.log("Entra por titulo");
       const listaFiltrada = await Peliculas.find({
         $or: [
           { titulo: req.query.titulo },
@@ -14,7 +13,6 @@ module.exports.traerPeliculas = async (req, res) => {
       });
       res.json(listaFiltrada);
     } else {
-      console.log("Entra por NADA");
       const lista = await Peliculas.find({});
       res.json(lista);
     }
@@ -26,7 +24,6 @@ module.exports.traerPeliculas = async (req, res) => {
 //Fucnión para mostrar las películas por su id único
 module.exports.traerPeliculasFiltros = async (req, res) => {
   try {
-    console.log("Entro por id");
     res.json(await Peliculas.find({ _id: req.params.id }));
   } catch (error) {
     res.json(error);
@@ -44,7 +41,7 @@ module.exports.nuevaPelicula = async (req, res) => {
   }
 };
 
-//Función para modificar alguna de las claves de la película
+//Función para modificar una o varias de las claves de la película
 module.exports.modificarPelicula = async (req, res) => {
   try {
     await Peliculas.updateOne({ _id: req.params.id }, req.body);
@@ -57,7 +54,6 @@ module.exports.modificarPelicula = async (req, res) => {
 //Función para borrar una pelicula a traves de su id
 module.exports.borrarPelicula = async (req, res) => {
   try {
-    console.log("Borrando una película");
     await Peliculas.deleteOne({ _id: req.params.id });
     res.json("Película eliminada");
   } catch (error) {

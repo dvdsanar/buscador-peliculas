@@ -7,7 +7,7 @@ const conexion = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => console.log("El mongoose chuta"))
+    .then(() => console.log("Moongose funciona correctamente"))
     .catch((error) => console.log("Ha habido un error", error));
 };
 

@@ -5,13 +5,11 @@ const jwt = require("jsonwebtoken");
 module.exports.traerUsuarios = async (req, res) => {
   try {
     if (req.query.nombre || req.query.email) {
-      console.log("Entra por nombre o email");
       const listaFiltrada = await Usuarios.find({
         $or: [{ nombre: req.query.nombre }, { email: req.query.email }],
       });
       res.json(listaFiltrada);
     } else {
-      console.log("Entra por NADA");
       const lista = await Usuarios.find({});
       res.json(lista);
     }
@@ -23,7 +21,6 @@ module.exports.traerUsuarios = async (req, res) => {
 //Función para mostrar los usuarios por su id único
 module.exports.traerUsuariosID = async (req, res) => {
   try {
-    console.log("Usuarios por id");
     res.json(await Usuarios.find({ _id: req.params.id }));
   } catch (error) {
     res.json(error);
@@ -47,7 +44,7 @@ module.exports.nuevoUsuario = async (req, res) => {
   }
 };
 
-//Función para modificar alguna de las claves del usuario
+//Función para modificar una o varias de las claves del usuario
 module.exports.modificarParteUsuario = async (req, res) => {
   try {
     await Usuarios.updateOne({ _id: req.params.id }, req.body);
@@ -60,7 +57,6 @@ module.exports.modificarParteUsuario = async (req, res) => {
 //Función para borrar un usuario concreto a traves de su id
 module.exports.borrarUsuario = async (req, res) => {
   try {
-    console.log("Borrando un usuario");
     await Usuarios.deleteOne({ _id: req.params.id });
     res.json("Usuario eliminado");
   } catch (error) {
@@ -68,7 +64,7 @@ module.exports.borrarUsuario = async (req, res) => {
   }
 };
 
-//Función para generar un token
+//Función para generar un token de usuario con su rol
 module.exports.generarFicha = async (req, res) => {
   try {
     const buscarUsuario = await Usuarios.findOne({
