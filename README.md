@@ -10,7 +10,7 @@ funciones de un CRUD en ambas entidades, además de sacar adelante el ejercicio 
 ## Estado del proyecto
 
 La API es totalmente operativa y funcional, con una base de datos en remoto, implementada con
-MongoDB Atlas, además de estar desplegado el proyecto con la herramienta Heroku en esta [dirección web]
+MongoDB Atlas, además de estar desplegado el proyecto con la herramienta Heroku en esta dirección web:
 (https://api-peliculas-david.herokuapp.com/).
 La idea es seguir añadiendole funcionalidad a la API a través de un front y poder utilizar dicha
 aplicacion como consulta de películas, algo parecido o similar a "JustWatch", pero con usuarios
@@ -33,7 +33,7 @@ usuario dentro de la base de datos para poder movernos por la API y mandar las p
 
 - /peliculas : para obtener la información de las películas
 - /usuarios : para obtener la información de los usuarios
-  - - /auth : para la obtención de un token para poder acceder al resto de peticiones
+  - /auth : para la obtención de un token para poder acceder al resto de peticiones
 
 Lo primero que debemos realizar una vez que sabemos que tenemos un usuario es obtener nuestro token
 de identificación que se nos facilitará haciendo un POST al endpoint de /usuarios/auth introduciiendo en
