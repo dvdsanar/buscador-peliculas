@@ -12,9 +12,7 @@ conexion();
 //Función para que nuestra applicación pueda recibir documentos en formato json
 app.use(express.json());
 //Levantar el servidor de la API
-app.listen(process.env.SERVER_PORT, () =>
-  console.log("Servidor levantado con éxito")
-);
+app.listen(process.env.PORT, () => console.log("Servidor levantado con éxito"));
 
 //rutas de los verbos de las peliculas y los usuarios y uso cada vez que sean llamados
 app.use("/usuarios", usRouter);
