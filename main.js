@@ -21,5 +21,3 @@ app.listen(process.env.PORT, () => console.log("Servidor levantado con éxito"))
 //rutas de los verbos de las peliculas y los usuarios y uso cada vez que sean llamados
 app.use("/usuarios", usRouter);
 app.use("/peliculas", pelRouter);
-
-console.log("Bienvenidos a la API de David Sánchez Ariza");
