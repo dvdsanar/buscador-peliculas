@@ -5,6 +5,11 @@ const conexion = require("./configuracion/conexion.js");
 const pelRouter = require("./peliculas/pelRutas.js");
 const usRouter = require("./usuarios/usRutas.js");
 const dotenvDavid = require("dotenv");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./configuracion/openapi.js");
+
+//Documentación de la API
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Función para el uso de variables de entorno
 dotenvDavid.config();
